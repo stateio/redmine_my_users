@@ -14,6 +14,16 @@ Redmine::Plugin.register :redmine_my_users do
 	requires_redmine :version_or_higher => '2.6.0'
 end
 
+
+
+# As per http://www.redmine.org/projects/redmine/wiki/Plugin_Internals
+# Due to the redmine loading lifecyle, plugin objects are loaded before
+# the Redmine objects are loaded. Thus, we have to monkeypatch instead of
+# merely opening up the class.
+#
+# Examples place these patches inside /lib but I find /app/models to be
+# a more natural place for them.
+#
 def load_patches(path = nil)
   begin
     Project.columns
@@ -31,5 +41,5 @@ def load_patches(path = nil)
     end
   end
 end
-
 load_patches
+
