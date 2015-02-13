@@ -27,3 +27,5 @@ module UsersHelperPatch
 	end
 
 end
+
+UsersHelper.send :include, UsersHelperPatch
