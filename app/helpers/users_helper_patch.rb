@@ -25,11 +25,10 @@ module UsersHelperPatch
 		end
 
     def users_select(form, id_field, users, opts={})
-      final_opts = opts.reverse_merge(:required => true, :no_label => true)
       form.select(id_field,
                   users.sort_by {|u| [u.lastname, u.firstname]}
                        .map{|u| ["#{u.lastname}, #{u.firstname} --- (#{u.mail})", u.id]},
-                  final_opts)
+                  opts)
     end
 
 	end
