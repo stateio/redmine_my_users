@@ -1,7 +1,4 @@
 <p>
     <%= form.label :user_parent %>
-    <%= form.select(:parent_id,
-                    User.order(:lastname, :firstname)
-                        .map{|u| ["#{u.lastname}, #{u.firstname} --- (#{u.mail})", u.id]},
-                    :required => true, :no_label => true) %>
+    <%= users_select(form, :parent_id, User.all)%>
 </p>
